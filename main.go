@@ -110,6 +110,26 @@ func recursiveRemove(targetNode *Node, key int) *Node {
 	*/
 }
 
+func (b *BinarySearchTree) search(key int) bool {
+	return recursiveSearch(b.Root, key)
+}
+
+func recursiveSearch(node *Node, key int) bool {
+	if node == nil {
+		return false
+	}
+
+	if node.Key > key {
+		return recursiveSearch(node.Right, key)
+	}
+
+	if node.Key < key {
+		return recursiveSearch(node.Left, key)
+	}
+
+	return true
+}
+
 func main() {
 
 }
