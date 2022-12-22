@@ -217,5 +217,5 @@ func BSTShow() {
 }
 
 func main() {
-	TrieShow()
+	ShowRadixTree()
 }
