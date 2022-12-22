@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Node struct {
 	Key   int
@@ -187,7 +189,7 @@ func BFS(root *Node) {
 
 }
 
-func main() {
+func BSTShow() {
 	tree := &BinarySearchTree{}
 
 	tree.insert(10)
@@ -212,5 +214,8 @@ func main() {
 
 	tree.BFS()
 	fmt.Println()
+}
 
+func main() {
+	TrieShow()
 }
