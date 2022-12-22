@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Node struct {
 	Key   int
 	Left  *Node
@@ -130,6 +132,85 @@ func recursiveSearch(node *Node, key int) bool {
 	return true
 }
 
+func (b *BinarySearchTree) PreOrderTraverse() {
+	recursivePreOrderTraverse(b.Root)
+}
+
+func recursivePreOrderTraverse(node *Node) {
+	if node != nil {
+		fmt.Print(node.Key, " ")
+		recursivePreOrderTraverse(node.Left)
+		recursivePreOrderTraverse(node.Right)
+	}
+}
+
+func (b *BinarySearchTree) InOrderTraverse() {
+	recursiveInOrderTraverse(b.Root)
+}
+
+func recursiveInOrderTraverse(node *Node) {
+	if node != nil {
+		recursivePreOrderTraverse(node.Left)
+		fmt.Print(node.Key, " ")
+		recursivePreOrderTraverse(node.Right)
+	}
+}
+
+func (b *BinarySearchTree) PostOrderTraverse() {
+	recursivePostOrderTraverse(b.Root)
+}
+
+func recursivePostOrderTraverse(node *Node) {
+	if node != nil {
+		recursivePreOrderTraverse(node.Left)
+		recursivePreOrderTraverse(node.Right)
+		fmt.Print(node.Key, " ")
+	}
+}
+
+func (b *BinarySearchTree) BFS() {
+	BFS(b.Root)
+}
+
+func BFS(root *Node) {
+	order := make([]*Node, 0)
+
+	order = append(order, root)
+
+	for indexNode := 0; indexNode < len(order); indexNode += 1 {
+		if order[indexNode] != nil {
+			fmt.Print(order[indexNode].Key, " ")
+			order = append(order, order[indexNode].Left, order[indexNode].Right)
+			// fmt.Println(len(order))
+		}
+	}
+
+}
+
 func main() {
+	tree := &BinarySearchTree{}
+
+	tree.insert(10)
+	tree.insert(15)
+	tree.insert(18)
+	tree.insert(16)
+	tree.insert(14)
+	tree.insert(2)
+	tree.insert(3)
+
+	tree.PreOrderTraverse()
+	fmt.Println()
+	tree.InOrderTraverse()
+	fmt.Println()
+	tree.PostOrderTraverse()
+	fmt.Println()
+
+	tree.BFS()
+	fmt.Println()
+
+	tree.remove(10)
+
+	tree.BFS()
+	fmt.Println()
 
 }
