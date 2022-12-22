@@ -76,6 +76,7 @@ func recursiveRemove(targetNode *Node, key int) *Node {
 		return targetNode
 	}
 
+	// find min in right node
 	leftNodeOfMostRightNode := targetNode.Right
 
 	for {
@@ -89,6 +90,24 @@ func recursiveRemove(targetNode *Node, key int) *Node {
 	targetNode.Key = leftNodeOfMostRightNode.Key
 	targetNode.Right = recursiveRemove(targetNode.Right, targetNode.Key)
 	return targetNode
+
+	/*
+		// find max in left node
+		rightNodeOfMostLeftNode = targetNode.Left
+
+		for {
+			if rightNodeOfMostLeftNode != nil && rightNodeOfMostLeftNode.Right != nil {
+				rightNodeOfMostLeftNode = rightNodeOfMostLeftNode.Left
+			} else {
+				break
+			}
+		}
+
+		targetNode.key = rightNodeOfMostLeftNode.key
+		targetNode.Left = removeRecursive(targetNode.Left, targetNode.Key)
+		return targetNode
+
+	*/
 }
 
 func main() {
